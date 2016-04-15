@@ -9,6 +9,7 @@
 import Foundation
 
 class Post {
+    
     private var _postDescription: String!
     private var _imageUrl: String!
     private var _likes: Int!
@@ -38,8 +39,9 @@ class Post {
     }
     
     init (postKey:String , dictionary: Dictionary<String, AnyObject>){
-        self._postKey = postKey
         
+        self._postKey = postKey
+        print (postKey)
         if let likes = dictionary["likes"] as? Int {
             self._likes = likes
         }

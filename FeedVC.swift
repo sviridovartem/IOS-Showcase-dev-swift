@@ -13,6 +13,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView:UITableView!
     var posts = [Post]()
+    
     static var imageCashe = NSCache()
 
     override func viewDidLoad() {
@@ -21,12 +22,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.estimatedRowHeight = 325
+        tableView.estimatedRowHeight = 350
         
-        DataServices.ds.REF_USERS.observeSingleEventOfType(.Value, withBlock: {snapshot in
+        DataServices.ds.REF_POSTS.observeSingleEventOfType(.Value, withBlock: {snapshot in
             print(snapshot.value)
             
             self.posts = []
+            
             if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
                 for snap in snapshots {
                 
@@ -48,7 +50,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        print(posts.count)
         return posts.count
         
     }
@@ -70,7 +71,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             return PostCellTableViewCell ()
         }
-        return tableView.dequeueReusableCellWithIdentifier("PostCellTableViewCell") as! PostCellTableViewCell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let post = posts[indexPath.row]
