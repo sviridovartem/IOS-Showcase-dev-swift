@@ -9,4 +9,9 @@
 ![project view](https://github.com/sviridovartem/IOS-Showcase-dev-swift/raw/master/description/7.png)
 ![project view](https://github.com/sviridovartem/IOS-Showcase-dev-swift/raw/master/description/8.png)
 
-<style = "background: aqua" ></style>
+<style>
+   body{
+    background-color: #3366CC; /* Цвет фона веб-страницы */
+   } 
+  
+  </style>
